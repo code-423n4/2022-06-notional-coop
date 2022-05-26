@@ -40,7 +40,7 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 
 ## O
 
-# Notional fCash x Index Coop contest details
+# Notional x Index Coop contest details
 
 - $71,250 USDC main award pot
 - $3,750 USDC gas optimization pot
