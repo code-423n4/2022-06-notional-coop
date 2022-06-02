@@ -35,7 +35,7 @@ import {
   deployWrappedfCashFactory,
   getCurrencyIdAndMaturity,
   mintWrappedFCash,
-} from "./utils";
+} from "../utils";
 
 const expect = getWaffleExpect();
 

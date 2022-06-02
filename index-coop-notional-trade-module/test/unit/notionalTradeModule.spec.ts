@@ -28,7 +28,7 @@ import { CompoundFixture, SystemFixture } from "@utils/fixtures";
 import { ADDRESS_ZERO } from "@utils/constants";
 import { CERc20 } from "@utils/contracts/compound";
 import { IERC20 } from "@typechain/IERC20";
-import { mintWrappedFCash } from "../integration/notionalTradeModule/utils";
+import { mintWrappedFCash } from "../utils";
 
 const expect = getWaffleExpect();
 

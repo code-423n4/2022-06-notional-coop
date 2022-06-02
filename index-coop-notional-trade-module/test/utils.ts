@@ -10,9 +10,9 @@ import { NUpgradeableBeacon__factory } from "@typechain/factories/NUpgradeableBe
 
 const ROUTER_ADDRESS = "0x1344A36A1B56144C3Bc62E7757377D288fDE0369";
 const NOTIONAL_PROXY_ADDRESS = "0x1344A36A1B56144C3Bc62E7757377D288fDE0369";
-const batchActionArtifact = require("../../../external/abi/notional/BatchAction.json");
-const erc1155ActionArtifact = require("../../../external/abi/notional/ERC1155Action.json");
-const routerArtifact = require("../../../external/abi/notional/Router.json");
+const batchActionArtifact = require("../external/abi/notional/BatchAction.json");
+const erc1155ActionArtifact = require("../external/abi/notional/ERC1155Action.json");
+const routerArtifact = require("../external/abi/notional/Router.json");
 
 const cEthAddress = "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5";
 
