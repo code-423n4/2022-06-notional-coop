@@ -69,16 +69,28 @@ The goal of this integration is to support Notionals fCash tokens as underlying 
 ## Key components
 Since fCash tokens themselves are not ERC20 compatible this integration consists of two key components:
 1. `WrappedfCash`: An ERC20 compliant wrapper for `fCash` developed by the notional team. (see [here](notional-wrapped-fcash))
-2. `NotionalTradeModule`: A new Module developed by IndexCoop to be added to the SetProtocol architecture in order to manage fCash positions on a SetToken. (see [here](index-coop-notional-trade-module))
+2. `NotionalTradeModule`: A new Module developed by IndexCoop to be added to the SetProtocol architecture in order to manage (wrapped) fCash positions on a SetToken. (see [here](index-coop-notional-trade-module))
 
 ## NotionalTradeModule
 The Notional trade module has two main functions:
 1. Allow the Manager of a Set Token to trade in and out of fCash positions on behalf of the Set
 2. Automatically redeem matured fCash position for either the asset or underlying token
 
+## Resources
+- [Set Protocol Repo (reduced version also in this repo)](https://github.com/SetProtocol/set-protocol-v2)
+- [Set Protocol Docs (section on modules)](https://docs.tokensets.com/developers/guides-and-tutorials/protocol/add-module)
+- TODO: Add Notional Trade module walkthrough
+- [WrappedFCash walkthrough](https://www.youtube.com/watch?v=RvCYFR2Yjls)
+- [WrappedFCash repo (content also subdirectory in this repo)](https://github.com/notional-finance/wrapped-fcash)
+- [Notional User Docs](https://docs.notional.finance/notional-v2/)
+- [Notional Developer Docs](https://docs.notional.finance/developer-documentation/)
+
 # Contest scope
 
-In general the scope of this contest contains the two contracts `WrappedfCash.sol` and `NotionalTradeModule.sol` as well as their interaction with the rest of the notional and set-protocol architecture. 
+In general the scope of this contest covers the two contracts [WrappedfCash](notional-wrapped-fcash/contracts/wfCashLogic.sol) and [NotionalTradeModule](index-coop-notional-trade-module/contracts/protocol/modules/v1/NotionalTradeModule.sol) as well as their interaction with the rest of the notional and set-protocol architecture. 
+
+## WrappedfCash
+TODO: Add assumptions / invariants / known limitations for wrappedfCash
 
 ## Notional Trade Module / Set Protocol
 
