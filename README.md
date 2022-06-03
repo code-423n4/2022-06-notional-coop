@@ -52,4 +52,66 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 
 This repo will be made public before the start of the contest. (C4 delete this line when made public)
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
+# Background
+
+## Notional
+[Notional](https://notional.finance/) is a protocol on Ethereum that facilitates fixed-rate, fixed-term crypto asset lending and borrowing through a novel financial instrument called fCash.
+
+## Set Protocol
+[Set Protocol](https://www.setprotocol.com/) is a non-custodial protocol built on Ethereum that allows for the creation, management, and trading of Sets, ERC20 tokens that represent a portfolio or basket of underlying assets.
+
+## Index Coop
+[Index Coop](https://indexcoop.com/) is a DAO that leverages Set Protocol's technology to build products that make crypto investing simple for everyone.
+
+## Purpose of integration
+The goal of this integration is to support Notionals fCash tokens as underlying positions of a SetToken in order to allow the creation of products that combine multiple fixed-rate lending positions across maturities and underlying currencies.
+
+## Key components
+Since fCash tokens themselves are not ERC20 compatible this integration consists of two key components:
+1. `WrappedfCash`: An ERC20 compliant wrapper for `fCash` developed by the notional team. (see [here](notional-wrapped-fcash))
+2. `NotionalTradeModule`: A new Module developed by IndexCoop to be added to the SetProtocol architecture in order to manage fCash positions on a SetToken. (see [here](index-coop-notional-trade-module))
+
+## NotionalTradeModule
+The Notional trade module has two main functions:
+1. Allow the Manager of a Set Token to trade in and out of fCash positions on behalf of the Set
+2. Automatically redeem matured fCash position for either the asset or underlying token
+
+# Contest scope
+
+In general the scope of this contest contains the two contracts `WrappedfCash.sol` and `NotionalTradeModule.sol` as well as their interaction with the rest of the notional and set-protocol architecture. 
+
+## Notional Trade Module / Set Protocol
+
+## In Scope
+At a high level, the core invariants that we expect to be upheld are that:
+
+- The manager of a Set can mint any fCash-position (identified by `currencyId` and `maturity`) on behalf of the Set using either the asset or underlying token given that:
+    - Specified `currencyId` and `maturity` correspond to a valid and active (i.e. not matured) fCash token on the notional protocol
+    - The set token contains either the asset / or underlying token as a component in sufficient quantity.
+    - The `NotionalTradeModule` has been added / registered in the correct way.
+- The manager of a Set can redeem any fCash-position  for either the asset or underlying token given that:
+    - Specified `currencyId` and `maturity` correspond to a valid fCash token that has previously been added as a component to this set.
+    - The `NotionalTradeModule` has been added / registered in the correct way.
+- For both the mint and redeem case the following should be true:
+    - The relative position of all tokens involved should be adjusted correctly. If a tokens position is 0 afterwards it should be removed from the list of components.
+    - The received / spent amounts should not violate the min / max limits specified.
+- When an fCash position matures. Any of the following actions should lead to an automatic redemption of the whole amount of this fCash position:
+    - A user issues any amount of set tokens
+    - A user redeems any amount of set tokens
+    - Anyone calls the `redeemMaturedPositions` method
+    - The `NotionalTradeModule` is removed from the set token
+- The automatic redemption should fulfil the same assumptions as a manually triggered one.
+- In general, no user including the set's manager should be able to:
+    - Drain any underlying tokens from either the set token or the fCash wrapper.
+    - Issue set tokens for less than the required amount of underlying tokens.
+    - Redeem set tokens for more than the respective amount of underlying tokens
+    - Produce a contract state that breaks the issuance / redemption process or any of the functionality outlined above
+
+## Out of Scope
+
+There are a number of known limitations that are explicitly out of scope for the context of the competition:
+
+- The `Owner` (not to be confused with the manager) of the Set token can add arbitrary logic as a new a set token module. This actor should be assumed to act in the protocols / users best interest and not collude in any attack or be otherwise compromised.
+- Funds (both ERC20 and ETH) that are transfered to any of the involved contracts outside of a supported function call, might be locked / lost indefinetely.
+
+

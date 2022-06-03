@@ -3,6 +3,7 @@
 ## Content
 This directory is a reduced copy of the [Set protocol repo](https://github.com/SetProtocol/set-protocol-v2).
 The only contract in scope within this directory is the [NotionalTradeModule](contracts/protocol/modules/v1/NotionalTradeModule.sol) contract.
+
 For further understanding of how this contract works you might want to take a look at the [unit](test/unit/notionalTradeModule.spec.ts) and [integration](test/integration/notionalTradeModule.spec.ts) intests which run similar test cases against a clean testchain or against main net fork respectively.
 
 
