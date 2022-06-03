@@ -1,10 +1,24 @@
+# Notional x Index Coop contest details
+
+- $71,250 USDC main award pot
+- $3,750 USDC gas optimization pot
+- Join [C4 Discord](https://discord.gg/code4rena) to register
+- Submit findings [using the C4 form](https://code4rena.com/contests/2022-06-notional-x-index-coop/submit)
+- [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
+- Starts June 7, 2022 20:00 UTC
+- Ends June 14, 2022 19:59 UTC
+
+This repo will be made public before the start of the contest. (C4 delete this line when made public)
+
+[ ⭐️ SPONSORS ADD INFO HERE ]
+
+
 # Notional x Index Coop FIXED ETF
 
 This is a combined audit with code contributed by both Notional Finance and Index Coop.
 
 Notional Wrapped fCash is a compatibility layer for ERC20 tokens and fCash. See details in `notional-wrapped-fcash/README.md`. A link to the repo is here: https://github.com/notional-finance/wrapped-fcash
 
----
 
 # Contest setup
 
@@ -38,19 +52,9 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - [ ] Optional: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
 - [ ] Delete this checklist and all text above the line below when you're ready.
 
-## O
 
-# Notional x Index Coop contest details
+---
 
-- $71,250 USDC main award pot
-- $3,750 USDC gas optimization pot
-- Join [C4 Discord](https://discord.gg/code4rena) to register
-- Submit findings [using the C4 form](https://code4rena.com/contests/2022-05-notional-fcash-index-coop-contest/submit)
-- [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
-- Starts June 6, 2022 20:00 UTC
-- Ends June 13, 2022 19:59 UTC
-
-This repo will be made public before the start of the contest. (C4 delete this line when made public)
 
 # Background
 
