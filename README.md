@@ -89,6 +89,12 @@ The Notional trade module has two main functions:
 
 In general the scope of this contest covers the two contracts [WrappedfCash](notional-wrapped-fcash/contracts/wfCashLogic.sol) and [NotionalTradeModule](index-coop-notional-trade-module/contracts/protocol/modules/v1/NotionalTradeModule.sol) as well as their interaction with the rest of the notional and set-protocol architecture. 
 
+| Contract Name | Source Lines of Code | Libraries | External Calls |
+| ------------- | -------------------- | ---------- | -------------- |
+| [NotionalTradeModule](index-coop-notional-trade-module/contracts/protocol/modules/v1/NotionalTradeModule.sol) | ~396 sLoC | [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)| [WrappedfCash](notional-wrapped-fcash/contracts/wfCashLogic.sol), [WrappedfCashFactory](notional-wrapped-fcash/contracts/proxy/WrappedfCashFactory.sol), [SetToken](index-coop-notional-trade-module/contracts/protocol/SetToken.sol), [DebtIssuanceModule](index-coop-notional-trade-module/contracts/protocol/modules/v1/DebtIssuanceModule.sol)
+
+TODO: Add Table entry for WrappedfCash
+
 ## WrappedfCash
 TODO: Add assumptions / invariants / known limitations for wrappedfCash
 
