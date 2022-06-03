@@ -15,20 +15,13 @@
   ],
   "scripts": {
     "build": "yarn clean && yarn compile && yarn build:ts:latest",
-    "build:npm:latest": "yarn clean && yarn compile:latest && yarn build:ts:latest",
-    "build:npm:hardhat": "yarn clean && yarn compile && yarn build:ts:hardhat",
     "build:ts:latest": "yarn typechain && yarn transpile:dist:latest",
-    "build:ts:hardhat": "yarn typechain && yarn transpile:dist:hardhat",
     "chain": "npx hardhat node",
     "clean": "./scripts/clean.sh",
     "compile": "npx hardhat compile",
     "compile:latest": "SKIP_ABI_GAS_MODS=true npx hardhat compile",
-    "flatten": "npx waffle flatten",
-    "lint": "yarn run lint-sol && yarn run lint-ts",
-    "lint-sol": "solhint 'contracts/**/*.sol'",
-    "lint-ts": "eslint -c .eslintrc.js --ext .ts test utils tasks --fix",
     "test": "yarn test:unit && yarn test:integration",
-    "test:unit": "FORK=false npx hardhat test",
+    "test:unit": "npx hardhat test",
     "test:integration": "FORK=true npx hardhat test",
     "test:clean": "yarn clean && yarn build && yarn test",
     "transpile:dist:latest": "tsc --project tsconfig.dist.json",
@@ -111,11 +104,6 @@
   "_moduleAliases": {
     "@utils": "utils",
     "@typechain": "typechain"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn precommit"
-    }
   },
   "lint-staged": {
     "contracts/**/*.sol": [
