@@ -67,8 +67,8 @@ The goal of this integration is to support Notionals fCash tokens as underlying 
 
 ## Key components
 Since fCash tokens themselves are not ERC20 compatible this integration consists of two key components:
-1. `WrappedfCash`: An ERC20 compliant wrapper for `fCash` developed by the notional team. (see [here](notional-wrapped-fcash))
-2. `NotionalTradeModule`: A new Module developed by IndexCoop to be added to the SetProtocol architecture in order to manage (wrapped) fCash positions on a SetToken. (see [here](index-coop-notional-trade-module))
+1. `WrappedfCash`: An ERC20 compliant wrapper for `fCash` developed by the notional team. (see [here](https://github.com/code-423n4/2022-06-notional-coop/tree/main/notional-wrapped-fcash))
+2. `NotionalTradeModule`: A new Module developed by IndexCoop to be added to the SetProtocol architecture in order to manage (wrapped) fCash positions on a SetToken. (see [here](https://github.com/code-423n4/2022-06-notional-coop/tree/main/index-coop-notional-trade-module))
 
 ## NotionalTradeModule
 The Notional trade module has two main functions:
@@ -91,7 +91,7 @@ In general the scope of this contest covers the two contracts [WrappedfCash](not
 
 | Contract Name | Source Lines of Code | Libraries | External Calls |
 | ------------- | -------------------- | ---------- | -------------- |
-| [NotionalTradeModule](index-coop-notional-trade-module/contracts/protocol/modules/v1/NotionalTradeModule.sol) | ~396 sLoC | [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)| [WrappedfCash](notional-wrapped-fcash/contracts/wfCashLogic.sol), [WrappedfCashFactory](notional-wrapped-fcash/contracts/proxy/WrappedfCashFactory.sol), [SetToken](index-coop-notional-trade-module/contracts/protocol/SetToken.sol), [DebtIssuanceModule](index-coop-notional-trade-module/contracts/protocol/modules/v1/DebtIssuanceModule.sol)
+| [NotionalTradeModule](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/modules/v1/NotionalTradeModule.sol) | ~396 sLoC | [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)| [WrappedfCash](notional-wrapped-fcash/contracts/wfCashLogic.sol), [WrappedfCashFactory](https://github.com/code-423n4/2022-06-notional-coop/blob/main/notional-wrapped-fcash/contracts/proxy/WrappedfCashFactory.sol), [SetToken](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/SetToken.sol), [DebtIssuanceModule](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/modules/v1/DebtIssuanceModule.sol)
 
 TODO: Add Table entry for WrappedfCash
 
