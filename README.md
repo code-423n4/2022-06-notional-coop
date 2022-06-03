@@ -79,7 +79,8 @@ The Notional trade module has two main functions:
 ## Resources
 - [Set Protocol Repo (reduced version also in this repo)](https://github.com/SetProtocol/set-protocol-v2)
 - [Set Protocol Docs (section on modules)](https://docs.tokensets.com/developers/guides-and-tutorials/protocol/add-module)
-- TODO: Add Notional Trade module walkthrough
+- [Set Architecture Overview](https://www.youtube.com/watch?v=hFmGOOdT8G8)
+- [NotionalTradeModule walkhtrough](https://www.youtube.com/watch?v=Cp32ai4A5oI)
 - [WrappedFCash walkthrough](https://www.youtube.com/watch?v=RvCYFR2Yjls)
 - [WrappedFCash repo (content also subdirectory in this repo)](https://github.com/notional-finance/wrapped-fcash)
 - [Notional User Docs](https://docs.notional.finance/notional-v2/)
