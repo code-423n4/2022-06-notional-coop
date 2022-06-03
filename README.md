@@ -17,7 +17,7 @@ This repo will be made public before the start of the contest. (C4 delete this l
 
 This is a combined audit with code contributed by both Notional Finance and Index Coop.
 
-Notional Wrapped fCash is a compatibility layer for ERC20 tokens and fCash. See details in `notional-wrapped-fcash/README.md`. A link to the repo is here: https://github.com/notional-finance/wrapped-fcash
+Notional Wrapped fCash is a compatibility layer for ERC20 tokens and fCash. See details in `notional-wrapped-fcash/README.md`. A link to the repo is here: https://github.com/notional-finance/wrapped-fcash, a technical walkthrough is here: https://www.youtube.com/watch?v=RvCYFR2Yjls
 
 
 # Contest setup
