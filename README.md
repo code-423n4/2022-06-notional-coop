@@ -56,12 +56,25 @@ In general the scope of this contest covers the two contracts [WrappedfCash](not
 
 | Contract Name | Source Lines of Code | Libraries | External Calls |
 | ------------- | -------------------- | ---------- | -------------- |
-| [NotionalTradeModule](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/modules/v1/NotionalTradeModule.sol) | ~396 sLoC | [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)| [WrappedfCash](notional-wrapped-fcash/contracts/wfCashLogic.sol), [WrappedfCashFactory](https://github.com/code-423n4/2022-06-notional-coop/blob/main/notional-wrapped-fcash/contracts/proxy/WrappedfCashFactory.sol), [SetToken](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/SetToken.sol), [DebtIssuanceModule](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/modules/v1/DebtIssuanceModule.sol)
-
-TODO: Add Table entry for WrappedfCash
+| [NotionalTradeModule](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/modules/v1/NotionalTradeModule.sol) | ~396 sLoC | [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)| [WrappedfCash](notional-wrapped-fcash/contracts/wfCashLogic.sol), [WrappedfCashFactory](https://github.com/code-423n4/2022-06-notional-coop/blob/main/notional-wrapped-fcash/contracts/proxy/WrappedfCashFactory.sol), [SetToken](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/SetToken.sol), [DebtIssuanceModule](https://github.com/code-423n4/2022-06-notional-coop/blob/main/index-coop-notional-trade-module/contracts/protocol/modules/v1/DebtIssuanceModule.sol) |
+| wfCashBase | 96 sLoC | OpenZeppelin v4.5.0 | [NotionalV2](https://github.com/notional-finance/contracts-v2) |
+| wfCashERC4626 | 180 sLoC | OpenZeppelin v4.5.0 | [NotionalV2](https://github.com/notional-finance/contracts-v2) |
+| wfCashLogic | 214 sLoC | OpenZeppelin v4.5.0 | [NotionalV2](https://github.com/notional-finance/contracts-v2) |
+| WrappedfCashFactory | 28 sLoC | OpenZeppelin v4.5.0 | [NotionalV2](https://github.com/notional-finance/contracts-v2) |
 
 ## WrappedfCash
-TODO: Add assumptions / invariants / known limitations for wrappedfCash
+
+A description of Wrapped fCash is in this [README](https://github.com/notional-finance/wrapped-fcash/blob/master/README.md). Key invariants include:
+
+- An instance of a wrapped fCash contract can only ever hold fCash for its configured `currencyId` and `maturity`.
+- An instance of a wrapped fCash contract can never have negative fCash (this signifies a debt).
+- The total supply of a wrapped fCash contract should always equal the amount of fCash that it holds on Notional.
+- An instance of a wrapped fCash contract should never have any residual ERC20 or ETH balances from minting and redeeming.
+- After maturity, wrapped fCash can no longer be minted.
+- After maturity, 1 unit of wrapped fCash is redeemable for at least 1 unit of underlying token plus some amount of accrued interest from Compound or Aave.
+- The `convertToShares` and `convertToAssets` ERC4626 methods can be relied on as oracle prices for fCash, they use Notional's internal [TWAP oracle](https://docs.notional.finance/notional-v2/fcash-valuation/interest-rate-oracles).
+- Only one instance of a wrapped fCash contract (defined by `currencyId` and `maturity`) can be deployed at any time from the `WrappedfCashFactory`.
+- Notional V2 uses 8 decimal precision to represent internal balances for both fCash and cash and truncates any deposits and withdraws at 8 decimals. This can lead to dust value rounding errors in ERC4626 estimation methods for tokens with larger decimal values. This is a known limitation.
 
 ## Notional Trade Module / Set Protocol
 
