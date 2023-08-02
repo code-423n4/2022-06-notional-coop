@@ -1,0 +1,389 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q2-2022 / ☑notional-x-index-coop-jun7
+==============================================================
+
+[06/03/2022 3:13 PM] kartoonjoy
+👋 Hello and welcome to the contest channel for the $75K USDC **Notional x Index Coop** contest!
+
+📆 Contest opens 06/07/2022 8:00 PM (20:00 UTC) and runs through 06/14/2022 7:59 PM (19:59 UTC) (7 days).
+
+Please give a warm welcome to the Notional x Index Coop team, particularly @Jeff Wu | Notional and @christn | IndexCoop, who will be available for questions either here in the channel or via DM.
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this contest, consider enabling notifications for this channel. 🐺 ⏰
+
+Contest Page: https://code4rena.com/contests/2022-06-notional-x-index-coop
+
+{Embed}
+https://code4rena.com/contests/2022-06-notional-x-index-coop
+Code4rena Notional x Index Coop
+$75,000 USDC
+7 June 2022—14 June 2022
+Code4rena - ARCHIVE-Q2-2022 - ☑notional-x-index-coop-jun7 [982297463635476560].txt_Files/C4-banner-7C19B.png
+
+{Reactions}
+C4Keycap (11) 🎉 (11) 
+
+[06/07/2022 2:41 PM] allan.g
+:coop:  🤝  :C4Keycap:  🤝   :notional:
+
+{Reactions}
+chefskiss (17) 💜 (8) 🔥 (9) 
+
+[06/07/2022 8:12 PM] m4rio.eth
+hey for the scope, do we have all the contracts or just the 2 ones and the interactions with the rest?
+
+
+[06/07/2022 9:47 PM] jeffwu_notional
+as far as the wrapped fCash contracts the scope is what is in there right now
+
+
+[06/07/2022 9:48 PM] jeffwu_notional
+the `batchLend` method is not yet deployed but can be seen here: https://github.com/notional-finance/contracts-v2/pull/99/files#diff-7a142e7e5b1d3b1189701a019061fe0eb4b24187fbf1380d9a8b19977a13a3ae, i decided not to pull it into scope due to all the dependencies in that file already
+
+{Embed}
+https://github.com/notional-finance/contracts-v2/pull/99/files
+Feature/batch lend improved calculations by jeffywu · Pull Request ...
+This PR adds a number of changes to improve gas efficiency and developer experience when integrating with Notional, particularly on the lending side. These changes will help enable Wrapped fCash (a...
+Code4rena - ARCHIVE-Q2-2022 - ☑notional-x-index-coop-jun7 [982297463635476560].txt_Files/977434-791A3
+
+
+[06/07/2022 9:50 PM] jeffwu_notional
+we have pretty high test coverage on that method and it follows the existing pattern for the rest of the methods in that file which have been audited, however, if there are issues with it i will obviously accept any bug reports
+
+
+[06/07/2022 9:51 PM] jeffwu_notional
+perhaps any discussion related to code out of scope should happen outside of this contest though
+
+
+[06/07/2022 9:51 PM] jeffwu_notional
+as far as the index coop scope, i would defer to @christn | IndexCoop
+
+
+[06/07/2022 10:44 PM] 0xkitsune
+Just checking that gas optimizations have the same  scope as security? Let me know if this looks right!
+```
+NationalTradeModule
+wfCashBase
+wfCashERC4626
+wfCashLogic
+WrappedCashFactory
+```
+
+
+[06/07/2022 11:03 PM] jeffwu_notional
+I believe that is the case, @Jay | C4 might be able to clarify
+
+{Reactions}
+👍 
+
+[06/07/2022 11:48 PM] .christn
+For the IndexCoop part only the `NotionalTradeModule` and it's interactions with the rest of the set architecture are in scope.
+
+
+[06/07/2022 11:51 PM] .christn
+Hey Everyone,
+I'm Christian, a core contributor at IndexCoop and the author of the `NotionalTradeModule`.
+If you have any questions regarding the IndexCoop part of the contest feel free to ask me. DM's are open.
+
+{Reactions}
+👍 (5) 
+
+[06/08/2022 1:33 AM] itsmetechjay
+Yep that is correct. Gas optimizations have the same scope as security.
+
+
+[06/08/2022 4:51 AM] pierrickgt
+Hi @Jeff Wu | Notional  
+I'm not familiar with Brownie and I'm running into some problems.
+When trying to run tests with the command `brownie test`, I get the following error:
+`ImportError: cannot import name 'WrappedFcashProject' from 'brownie.project'`
+Except `sudo pip3 install -r requirements.txt` is there any other command to run to init the project?
+
+
+[06/08/2022 5:23 AM] 100proof
+On Ubuntu 22.04 I had to apply the following diff do make things compile using `brownie`.
+```
+diff --git a/notional-wrapped-fcash/contracts/wfCashERC4626.sol b/notional-wrapped-fcash/contracts/wfCashERC4626.sol
+index b61ff54..fede3f5 100644
+--- a/notional-wrapped-fcash/contracts/wfCashERC4626.sol
++++ b/notional-wrapped-fcash/contracts/wfCashERC4626.sol
+@@ -1,5 +1,5 @@
+ // SPDX-License-Identifier: MIT
+-pragma solidity ^0.8.0;
++pragma solidity 0.8.11;
+ 
+ import "./wfCashLogic.sol";
+ import "../interfaces/IERC4626.sol";
+diff --git a/notional-wrapped-fcash/requirements.txt b/notional-wrapped-fcash/requirements.txt
+index f1e5bed..01bc5b6 100644
+--- a/notional-wrapped-fcash/requirements.txt
++++ b/notional-wrapped-fcash/requirements.txt
+@@ -1 +1 @@
+-eth-brownie==1.18.1
++eth-brownie==1.18.2
+```
+
+{Reactions}
+❤️ 
+
+[06/08/2022 5:23 AM] 100proof
+However the error I had was different to what you had @Pierrick
+
+
+[06/08/2022 5:24 AM] 100proof
+`pip3 install -r requirements.txt` just did not work with `eth-brownie==1.18.1`. I had to bump the version to get it to work.
+
+
+[06/08/2022 5:28 AM] 100proof
+Hmm, I'm still having problems. When I run `brownie test` I get 
+```
+________________________________________________________ ERROR collecting tests/test_wrapped_fcash.py _________________________________________________________
+ImportError while importing test module '/home/xxxxxx/code/codearena/notional-coop-2022-06/notional-wrapped-fcash/tests/test_wrapped_fcash.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_wrapped_fcash.py:6: in <module>
+    from brownie.project import WrappedFcashProject
+E   ImportError: cannot import name 'WrappedFcashProject' from 'brownie.project' (/home/xxxxxx/.local/lib/python3.10/site-packages/brownie/project/__init__.py)
+```
+
+
+[06/08/2022 5:29 AM] 100proof
+Any ideas?
+
+
+[06/08/2022 11:49 AM] jeffwu_notional
+i believe brownie gets the project name from the folder of the repo in some way
+
+
+[06/08/2022 11:53 AM] jeffwu_notional
+try changing that name to NotionalWrappedFcashProject since you are using the code arena repo
+
+{Reactions}
+thankyou 
+
+[06/08/2022 11:54 AM] jeffwu_notional
+also i did update the tests a bit so they can run on a mainnet fork with a canary deployment of some changes, i dont belive they are in the contest repo but you can see them here: https://github.com/notional-finance/wrapped-fcash/blob/master/tests/test_wrapped_fcash.py#L20-L32
+
+{Embed}
+https://github.com/notional-finance/wrapped-fcash/blob/master/tests/test_wrapped_fcash.py
+wrapped-fcash/test_wrapped_fcash.py at master · notional-finance/wr...
+ERC20, ERC777 and ERC4626 compatible wrapper for Notional fCash - wrapped-fcash/test_wrapped_fcash.py at master · notional-finance/wrapped-fcash
+Code4rena - ARCHIVE-Q2-2022 - ☑notional-x-index-coop-jun7 [982297463635476560].txt_Files/wrapped-fcash-5B892
+
+{Reactions}
+👏 
+
+[06/08/2022 6:47 PM] bernd_42
+Where can I find the implementation of the `NotionalV2.batchLend` function? I've looked everywhere, but no chance of finding it
+
+{Reactions}
+2️⃣ (2) 
+
+[06/08/2022 10:58 PM] 100proof
+I couldn't even find it at https://github.com/notional-finance/contracts-v2.git
+
+
+[06/09/2022 1:30 AM] p12473
+it's mentioned above https://discord.com/channels/810916927919620096/982297463635476560/983849919079141488
+
+{Reactions}
+👍 
+
+[06/09/2022 10:34 AM] 0xkowloon
+renaming the folder to `wrapped-fcash` worked
+
+{Reactions}
+same 
+
+[06/09/2022 2:52 PM] abhinavmir#1898
+Checked the test coverage, there seems to be 100% coverage for some files, 0 for another. Wondering why is this?
+
+
+[06/09/2022 10:51 PM] acegawd
+DM @Jeff Wu | Notional
+
+
+[06/09/2022 10:52 PM] jeffwu_notional
+I’m not sure myself, have to check later
+
+
+[06/10/2022 3:02 AM] abhinavmir#1898
+@Jeff Wu | Notional another question - wfcash repo has both brownie yaml and hardhat config - why the latter since the deploys happen from brownie? fair warning, i haven't used brownie much
+
+
+[06/10/2022 11:14 AM] jeffwu_notional
+hardhat is used for fork testing
+
+
+[06/10/2022 7:37 PM] abhinavmir#1898
+gotcha - which one do we usually use to deploy?
+
+
+[06/10/2022 9:53 PM] rotcivegaf
+Are the contracts inherited by the `NotionalTradeModule` contract in scope? 
+Like `ModuleBase`
+
+
+[06/10/2022 10:51 PM] .christn
+Generally the scope of the contest is limited to the `NotionalTradeModule`. I'd say that the dependencies are only in scope as far as their interaction / usage by the `NotionalTradeModule` is concerned. 
+I.e. if you find an issue in the `NotionalTradeModule` that stems from it's interaction with any of these dependencies then that'd be in scope whereas an issue in these dependencies that does not affect the `NotionalTradeModule` would not be. (if you do find such an issue you might want to take a look at set protocols bug bounty program though: https://docs.tokensets.com/protocol/security#bug-bounty).
+
+Also those dependencies are not in scope for the gas-optimization. Most of these dependencies have been audited by OZ in their set protocol audit: https://blog.openzeppelin.com/set-protocol-audit/#:~:text=Set%20Protocol%20provides%20a%20mechanism,goal%20but%20changes%20the%20architecture.
+
+{Embed}
+OpenZeppelin Security
+https://blog.openzeppelin.com/set-protocol-audit/
+Set Protocol Audit - OpenZeppelin blog
+Set Protocol provides a mechanism for a single ERC20 token to represent a combination of other tokens on Ethereum. Version 2 of the protocol has the same goal but changes the architecture.
+Code4rena - ARCHIVE-Q2-2022 - ☑notional-x-index-coop-jun7 [982297463635476560].txt_Files/cover_audits_set-31176.png
+
+{Embed}
+https://docs.tokensets.com/protocol/security
+Security
+Code4rena - ARCHIVE-Q2-2022 - ☑notional-x-index-coop-jun7 [982297463635476560].txt_Files/-MGpeJe25U2b8vTa_Byj-19D7E.png
+
+{Reactions}
+👍 
+
+[06/11/2022 1:40 PM] cryptphi
+hi, just need some bit of clarification please.... when you call `NotionalV2.batchBalanceAndTradeAction()` , does it update `token.balanceOf(address(this))` assume not ETH? So far I understand calling it means you're selling fCash via borrowing
+
+
+[06/12/2022 6:49 AM] .christn
+Cc @Jeff Wu | Notional
+
+
+[06/13/2022 1:47 AM] jonah1005
+That's kind of the entrypoint of the notional protocol. Users can do many different things through `NotionalV2.batchBalanceAndTradeAction()`  Provideing/removing liquidity(ntoken), depositing, withdrawing, lending/ borrowing/ [BatchAction.sol#L71-L78](https://github.com/notional-finance/contracts-v2/blob/master/contracts/external/actions/BatchAction.sol#L71-L78) 
+I think the protocol would pull tokens from user if there's depositing actions.
+
+{Embed}
+https://github.com/notional-finance/contracts-v2/blob/master/contracts/external/actions/BatchAction.sol
+contracts-v2/BatchAction.sol at master · notional-finance/contracts...
+Contribute to notional-finance/contracts-v2 development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2022 - ☑notional-x-index-coop-jun7 [982297463635476560].txt_Files/contracts-v2-0E9AC
+
+
+[06/13/2022 3:27 AM] 100proof
+Where are functions `getfCashLendFromDeposit` and `getfCashBorrowFromPrincipal` defined?
+
+
+[06/13/2022 3:47 AM] 100proof
+It's here: https://github.com/notional-finance/contracts-v2/tree/feature/batch-lend-improved-calculations (in a branch)
+
+{Reactions}
+🎉 (4) 
+
+[06/14/2022 4:21 PM] acegawd
+DM @christn | IndexCoop
+
+
+[06/14/2022 8:02 PM] C4
+**🚨 CONTEST ALERT**
+
+@🐺wardens The **Notional x Index Coop** contest is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: the **Notional x Index Coop** team will review the findings over the next couple of days, and then we'll pass them off to the judge. Keep an eye on #📢announcements for regular updates on how the contest is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a gardener if you have questions along the way!
+
+{Reactions}
+🚀 (5) coop notional 
+
+[07/07/2022 8:14 PM] itsmetechjay
+🤑 🎉  Awards for **Notional x Index Coop**:
+
+$14,441.79 USDC » @Jonah1005 
+$12,608.64 USDC » @unforgiven 
+$9,998.19 USDC » @xiaoming90 
+$5,642.61 USDC » @csanuragjain 
+$5,595.18 USDC » @Django | Saloon Finance 
+$5,204.36 USDC » @Bernd 
+$4,515.73 USDC » GreyArt (@hickuphh3, @P12473)
+$2,804.00 USDC » @Meera 
+$1,942.84 USDC » @minhquanym 
+$1,894.40 USDC » @kenzo 
+$1,486.62 USDC » @0x52 - Away Until 8/9 
+$981.78 USDC » @IllIllI 
+$367.66 USDC » @antonttc 
+$352.01 USDC » GimelSec (@rayn | GimelSec, @sces60107 | GimelSec)
+$261.90 USDC » @sorryNotsorry 
+$248.98 USDC » @joestakey 
+$181.82 USDC » @0xkatana 
+$170.58 USDC » 0x29A (@anon, @Rotcivegaf)
+$162.05 USDC » @0x1f8b 
+$159.11 USDC » 0xf15ers (@remora0, @twojoy)
+$157.48 USDC » @Funen 
+$154.42 USDC » @hyh 
+$146.84 USDC » @Pierrick 
+$146.84 USDC » @Chom 
+$145.81 USDC » @delfin454000 
+$145.80 USDC » @Waze 
+$144.37 USDC » @Picodes | Angle 
+$144.37 USDC » @Deivitto 
+$144.20 USDC » @fatherOfBlocks 
+$140.88 USDC » @0xKitsune 
+$138.25 USDC » @TomJ 
+$138.25 USDC » @TerrierLover 
+$138.25 USDC » @simon135 
+$137.22 USDC » @_Adam 
+$137.20 USDC » @slywaters 
+$136.79 USDC » @thinklab 
+$136.79 USDC » @ellahi 
+$135.76 USDC » @saian 
+$135.76 USDC » @sach1r0 
+$135.76 USDC » @catchup 
+$135.76 USDC » @c3phas 
+$135.59 USDC » @Sm4rty 
+$135.59 USDC » @Cityscape 
+$135.59 USDC » @0xNazgul 
+$135.58 USDC » @hake | SmartSek 
+$135.58 USDC » @0xmint 
+$135.56 USDC » @Tadashi 
+$135.56 USDC » @Roman 
+$135.56 USDC » @hansfriese 
+$96.77 USDC » @Ruhum 
+$89.19 USDC » @zzzitron 
+$89.19 USDC » @Trumpero 
+$89.19 USDC » @100proof 
+$89.19 USDC » @cloudjunky 
+$89.19 USDC » @cccz 
+$89.19 USDC » @Bronicle 
+$88.16 USDC » Nethermind (@mauricio1802, @dic0de, @dxdv, @mr-roh, @visgoth, @thomaspanf, @kaliberpoziomka8552, @CalabashSquash, @Parth, @DestroyerSrt)
+$88.16 USDC » @dipp 
+$88.16 USDC » @cryptphi 
+$88.16 USDC » @0xNineDec 
+$88.14 USDC » @z3s 
+$88.14 USDC » @JC
+$88.14 USDC » @ayeslick 
+$49.06 USDC » @Tomio 
+$49.06 USDC » @rfa 
+$49.06 USDC » @8olidity 
+$47.60 USDC » @0xSolus 
+$47.60 USDC » @UnusualTurtle 
+$47.60 USDC » @Sloth 
+$47.43 USDC » @samruna 
+$47.43 USDC » @Kaden 
+$47.43 USDC » @ElKu 
+$47.43 USDC » DavidGialdi
+$47.43 USDC » @0v3rf10w 
+$47.42 USDC » @ynnad 
+$47.42 USDC » @Fitraldys 
+$47.42 USDC » @djxploit 
+
+🏁 Findings summary 
+---------------------------
+High risk findings: 6 total, 1 unique
+Med risk findings: 14 total, 10 unique
+Gas optimization reports: 55 
+QA reports: 61
+
+Congratulations all!  💸 💸 💸
+
+{Reactions}
+💯 (10) 
+
+==============================================================
+Exported 42 message(s)
+==============================================================
